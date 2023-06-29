@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_products"
+    >
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.example.shop111.fragments.DashboardFragment"
+        android:label="dashboard"
+        tools:layout="@layout/dashboard_fragment"/>
+    <fragment
+        android:id="@+id/navigation_orders"
+        android:name="com.example.shop111.fragments.OrdersFragment"
+        android:label="orders"
+        tools:layout="@layout/orders_fragment"/>
+    <fragment
+        android:id="@+id/navigation_products"
+        android:name="com.example.shop111.fragments.ProductsFragment"
+        android:label="products"
+        tools:layout="@layout/products_fragment">
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_sold_products"
+        android:name="com.example.shop111.fragments.SoldProductsFragment"
+        android:label="sold products"
+        tools:layout="@layout/sold_products_fragment">
+    </fragment>
+
+
+
+</navigation>

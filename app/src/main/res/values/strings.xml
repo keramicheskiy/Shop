@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Название</string>
+    <string name="create_an_account"></string>
+    <string name="registration">Регестрация</string>
+    <string name="registration_input_margin">10dp</string>
+    <string name="sign_in">Вход в аккаунт</string>
+    <string name="activity_login_already_have_account">Уже есть аккаунт</string>
+    <string name="activity_login_to_register">Создать аккаунт</string>
+    <string name="please_wait">Plese wait...</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_item_found">No item found!</string>
+    <string name="add_product">Add product</string>
+
+</resources>
