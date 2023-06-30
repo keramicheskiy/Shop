@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -19,9 +20,9 @@ import java.util.Calendar
 
 class ReviewAdapter (
     val context: Context,
+    val activity: ProductDetailsActivity,
     val mUser: User,
     val list: MutableList<Review>,
-    val activity: ProductDetailsActivity,
     ) : RecyclerView.Adapter<ReviewAdapter.ViewHolder>() {
     class ViewHolder (val binding: ReviewItemBinding) : RecyclerView.ViewHolder(binding.root);
 
@@ -41,6 +42,9 @@ class ReviewAdapter (
 
         holder.binding.tvDate.text = model.date.toString()
 
+        holder.binding.btnEdit.visibility = View.GONE
+        holder.binding.btnDelete.visibility = View.GONE
+
 //        FireStoreClass().getUserDetails(this@ReviewAdapter);
         if (model.reviewText.isNotEmpty()) {
             holder.binding.etReview.setText(model.reviewText);
@@ -53,32 +57,6 @@ class ReviewAdapter (
             GlideLoader(context).loadUserProfile(mUser.image, holder.binding.imageView);
         }
 
-
-        holder.binding.btnDelete.setOnClickListener {
-            FireStoreClass().deleteReview(activity, model)
-        }
-
-        holder.binding.btnEdit.setOnClickListener {
-            val x = AlertDialog.Builder(context)
-                .setTitle("")
-                .setMessage("")
-                .setIcon(R.drawable.add_comment_vector_asset)
-                .setPositiveButton("Добавить") { z,_ ->
-                    val review = Review(
-                        product_id = model.product_id,
-                        user_id = FireStoreClass().getCurrentUserId(),
-                        reviewText = holder.binding.etReview.text.toString().trim(),
-                        stars= holder.binding.stars.numStars,
-                        date= System.currentTimeMillis(),
-                    )
-                    FireStoreClass().addReview(activity, review)
-                }.setNegativeButton("Отмена") { z,_ ->
-                    z.dismiss()
-                }
-            val a : AlertDialog = x.create()
-            a.setCancelable(false)
-            a.show()
-        }
 
 
     }

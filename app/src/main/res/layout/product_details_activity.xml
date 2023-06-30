@@ -215,10 +215,6 @@
                 >
 
                 <include layout="@layout/review_item"></include>
-                <include layout="@layout/review_item"></include>
-                <include layout="@layout/review_item"></include>
-                <include layout="@layout/review_item"></include>
-                <include layout="@layout/review_item"></include>
 
 
 
@@ -229,10 +225,20 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_reviews"
+                android:id="@+id/rv_user_review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/btnAddReview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_reviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/rv_user_review"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:visibility="gone"

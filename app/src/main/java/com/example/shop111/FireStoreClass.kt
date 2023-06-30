@@ -398,11 +398,11 @@ class FireStoreClass {
             }
     }
 
-    fun deleteReview(activity: Activity, review: Review) {
+    fun deleteReview(activity: Activity, productId: String) {
         mFireStore.collection(Constants.PRODUCTS)
-            .document(review.product_id)
+            .document(productId)
             .collection(Constants.REVIEWS)
-            .document(review.user_id)
+            .document(getCurrentUserId())
             .delete()
             .addOnSuccessListener {
                 when(activity) {

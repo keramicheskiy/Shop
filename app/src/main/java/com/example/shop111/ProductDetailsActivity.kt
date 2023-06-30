@@ -16,8 +16,10 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.add
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shop111.adapters.DashboardAdapter
 import com.example.shop111.adapters.ReviewAdapter
+import com.example.shop111.adapters.UsersReviewAdapter
 import com.example.shop111.databinding.ProductDetailsActivityBinding
 import com.example.shop111.fragments.BaseFragment
 import com.example.shop111.fragments.ReviewActivity
@@ -66,6 +68,12 @@ class ProductDetailsActivity : BaseActivity(), OnClickListener{
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        FireStoreClass().getUserDetails(this)
+
+    }
+
 
     fun setUpActionBar(){
 
@@ -99,7 +107,6 @@ class ProductDetailsActivity : BaseActivity(), OnClickListener{
     fun setDetailsInfo(product: Product) {
         mProductDetails = product
         val binding = binding
-        FireStoreClass().getUserDetails(this)
         binding.tvProductTitle.text = product.product_title
         binding.tvProductPrice.text = product.product_price
         binding.tvProductDescription.text = product.product_description
@@ -154,8 +161,8 @@ class ProductDetailsActivity : BaseActivity(), OnClickListener{
 
 
     fun gettingReviewsSuccess(list: MutableList<Review>) {
-        val adapter = ReviewAdapter(this, mUser,  list, this)
-        binding.rvReviews.layoutManager = GridLayoutManager(this, 1)
+        val adapter = ReviewAdapter(this, this, mUser,  list)
+        binding.rvReviews.layoutManager = LinearLayoutManager(this)//GridLayoutManager(this, 1)
         binding.rvReviews.setHasFixedSize(true)
         binding.rvReviews.adapter = adapter
 
@@ -165,6 +172,10 @@ class ProductDetailsActivity : BaseActivity(), OnClickListener{
 
     fun getDetailsSuccess(user: User) {
         mUser = user
+        val adapter = UsersReviewAdapter(this, this@ProductDetailsActivity, mUser, mProductID)
+        binding.rvUserReview.layoutManager = LinearLayoutManager(this)
+        binding.rvUserReview.setHasFixedSize(true)
+        binding.rvUserReview.adapter = adapter
     }
 
     fun addingReviewSuccess() {
